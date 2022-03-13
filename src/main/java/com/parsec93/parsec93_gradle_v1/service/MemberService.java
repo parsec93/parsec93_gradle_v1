@@ -3,16 +3,20 @@ package com.parsec93.parsec93_gradle_v1.service;
 import com.parsec93.parsec93_gradle_v1.domain.Member;
 import com.parsec93.parsec93_gradle_v1.repository.MemberRepository;
 import com.parsec93.parsec93_gradle_v1.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class MemberService {
 
     //private final MemberRepository memberRepository = new MemoryMemberRepository();
     //동일한 repository 로 테스트 하기 위해서 위 코드를 아래처럼 바꾼다.
     private final MemberRepository memberRepository;
 
+    @Autowired
     public MemberService(MemberRepository memberRepository){
         this.memberRepository = memberRepository;
     }
