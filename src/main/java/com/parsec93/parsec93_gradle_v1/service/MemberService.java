@@ -7,9 +7,15 @@ import com.parsec93.parsec93_gradle_v1.repository.MemoryMemberRepository;
 import java.util.List;
 import java.util.Optional;
 
-public class MemberSerivce {
+public class MemberService {
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    //private final MemberRepository memberRepository = new MemoryMemberRepository();
+    //동일한 repository 로 테스트 하기 위해서 위 코드를 아래처럼 바꾼다.
+    private final MemberRepository memberRepository;
+
+    public MemberService(MemberRepository memberRepository){
+        this.memberRepository = memberRepository;
+    }
 
     /**
      * 회원가입
