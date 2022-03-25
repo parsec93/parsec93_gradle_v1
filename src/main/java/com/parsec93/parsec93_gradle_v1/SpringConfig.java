@@ -1,25 +1,23 @@
 package com.parsec93.parsec93_gradle_v1;
 
-import com.parsec93.parsec93_gradle_v1.repository.JdbcMemberRepository;
-import com.parsec93.parsec93_gradle_v1.repository.JdbcTemplateMemeberRepository;
-import com.parsec93.parsec93_gradle_v1.repository.MemberRepository;
-import com.parsec93.parsec93_gradle_v1.repository.MemoryMemberRepository;
+import com.parsec93.parsec93_gradle_v1.repository.*;
 import com.parsec93.parsec93_gradle_v1.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 
 @Configuration
 public class SpringConfig {
 
-    private DataSource dataSource;
+   private EntityManager em;
 
-    @Autowired
-    public SpringConfig(DataSource dataSource){
-        this.dataSource = dataSource;
-    }
+   @Autowired
+   public SpringConfig(EntityManager em){
+       this.em = em;
+   }
     @Bean
     public MemberService memberService() {
         return new MemberService(memberRepository());
@@ -29,6 +27,7 @@ public class SpringConfig {
     public MemberRepository memberRepository() {
         // return new MemoryMemberRepository();
         //return new JdbcMemberRepository(dataSource);
-        return new JdbcTemplateMemeberRepository(dataSource);
+        //return new JdbcTemplateMemeberRepository(dataSource);
+        return new JpaMemberRepository(em);
     }
 }
