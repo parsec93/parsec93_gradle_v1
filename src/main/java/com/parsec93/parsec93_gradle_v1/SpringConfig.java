@@ -1,6 +1,7 @@
 package com.parsec93.parsec93_gradle_v1;
 
 import com.parsec93.parsec93_gradle_v1.repository.JdbcMemberRepository;
+import com.parsec93.parsec93_gradle_v1.repository.JdbcTemplateMemeberRepository;
 import com.parsec93.parsec93_gradle_v1.repository.MemberRepository;
 import com.parsec93.parsec93_gradle_v1.repository.MemoryMemberRepository;
 import com.parsec93.parsec93_gradle_v1.service.MemberService;
@@ -27,6 +28,7 @@ public class SpringConfig {
     @Bean
     public MemberRepository memberRepository() {
         // return new MemoryMemberRepository();
-        return new JdbcMemberRepository(dataSource);
+        //return new JdbcMemberRepository(dataSource);
+        return new JdbcTemplateMemeberRepository(dataSource);
     }
 }
